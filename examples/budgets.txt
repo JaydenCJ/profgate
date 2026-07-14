@@ -1,0 +1,20 @@
+# profgate budgets — demoapp
+#
+# Format: <pattern> <key>=<value> [<key>=<value> ...]
+# Patterns are anchored globs over the full function name.
+# See docs/budgets.md for the complete reference.
+
+# The whole profile may not get more than 20% slower per PR.
+@total                  max-growth=20%
+
+# Rendering is on the hot path: cap absolute cost and per-PR growth.
+demoapp/render.*        max-flat=35ms  max-flat-growth=50%
+
+# The store layer owns everything it calls.
+demoapp/store.Query     max-cum=80ms
+
+# Serialization may never exceed 25% of total CPU.
+encoding/json.*         max-flat=25%
+
+# Catch-all: no single function may triple, whoever it is.
+*                       max-flat-growth=200%

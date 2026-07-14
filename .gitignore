@@ -1,0 +1,17 @@
+# build artifacts
+/profgate
+/dist/
+
+# test and coverage output
+*.test
+*.out
+coverage.*
+
+# local profile scratch
+*.pb.gz
+
+# editor noise
+.idea/
+.vscode/
+*.swp
+.DS_Store

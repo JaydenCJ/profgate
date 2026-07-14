@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="430" viewBox="0 0 760 430" font-family="Menlo, Consolas, monospace" font-size="14">
+  <rect width="760" height="430" rx="10" fill="#101418"/>
+  <circle cx="24" cy="22" r="6" fill="#ff5f56"/>
+  <circle cx="44" cy="22" r="6" fill="#ffbd2e"/>
+  <circle cx="64" cy="22" r="6" fill="#27c93f"/>
+  <text x="380" y="27" fill="#8b949e" text-anchor="middle" font-size="12">profgate — fail CI when functions blow their CPU budget</text>
+  <g fill="#c9d1d9">
+    <text x="24" y="62"><tspan fill="#7ee787">$</tspan> profgate check --budgets budgets.txt base.cpu.pb.gz head.cpu.pb.gz</text>
+    <text x="24" y="92"><tspan fill="#79c0ff">profgate check</tspan> — cpu/nanoseconds</text>
+    <text x="24" y="114">total: 100ms → 134ms   Δ <tspan fill="#f778ba">+34ms (+34.0%)</tspan></text>
+    <text x="24" y="136" fill="#8b949e">budget checks: 12   functions matched: 7</text>
+    <text x="24" y="172"><tspan fill="#ff7b72">BREACH</tspan>  @total                total  100ms → 134ms, allowed Δ +20ms</text>
+    <text x="24" y="192" fill="#8b949e">        exceeds max-growth=20% (budgets line 8)</text>
+    <text x="24" y="222"><tspan fill="#ff7b72">BREACH</tspan>  demoapp/render.Table  flat   10ms → <tspan fill="#f778ba">42ms</tspan>, allowed Δ +5ms</text>
+    <text x="24" y="242" fill="#8b949e">        exceeds max-flat-growth=50% (budgets line 11)</text>
+    <text x="24" y="278">check: <tspan fill="#ff7b72">FAIL (4 breaches)</tspan>   <tspan fill="#8b949e">exit code 1</tspan></text>
+    <text x="24" y="318"><tspan fill="#7ee787">$</tspan> profgate diff base.cpu.pb.gz head.cpu.pb.gz</text>
+    <text x="24" y="348" fill="#d2a8ff">Δ FLAT            FLAT (BASE→HEAD)   FUNCTION</text>
+    <text x="24" y="370"><tspan fill="#f778ba">+32ms (+320.0%)</tspan>   10ms → 42ms        demoapp/render.Table</text>
+    <text x="24" y="392"><tspan fill="#f778ba">+4ms (+10.0%)</tspan>     40ms → 44ms        demoapp/handlers.Index</text>
+    <text x="24" y="414"><tspan fill="#7ee787">-2ms (-6.7%)</tspan>      30ms → 28ms        demoapp/store.Query</text>
+  </g>
+</svg>
